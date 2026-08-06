@@ -1,0 +1,10 @@
+{
+  "item.disease.pinpoint": "针尖",
+  "item.disease.syringe": "注射器",
+  "item.disease.lily_fruit": "铃兰实",
+  "item.disease.arsenic_trioxide": "鹤顶红",
+
+  "effect.disease.rabies": "恐水症",
+
+  "itemGroup.disease": "瘟疫：物类"
+}

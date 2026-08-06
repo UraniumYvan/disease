@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "disease:pinpoint"
+    },
+    "X": {
+      "item": "minecraft:glass"
+    },
+    "Y": {
+      "tag": "minecraft:buttons"
+    }
+  },
+  "pattern": [
+    "#",
+    "X",
+    "Y"
+  ],
+  "result": {
+    "count": 1,
+    "id": "disease:syringe"
+  }
+}

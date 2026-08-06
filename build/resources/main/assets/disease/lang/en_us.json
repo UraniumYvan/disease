@@ -1,0 +1,10 @@
+{
+  "item.disease.pinpoint": "pinpoint",
+  "item.disease.syringe": "syringe",
+  "item.disease.lily_fruit": "lily fruit",
+  "item.disease.arsenic_trioxide": "arsenic trioxide",
+
+  "effect.disease.rabies": "rabies",
+
+  "itemGroup.disease": "disease:item"
+}

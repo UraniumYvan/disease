@@ -1,0 +1,47 @@
+/gamerule keepInventory true
+/give Dev disease:pinpoint
+/seed
+/give Dev minecraft:iron_nugget 64
+/recipe take @p examplemod:pinpoint
+/recipe take @p disease:pinpoint
+/time set day
+/recipe take @p disease:pinpoint
+/recipe take @p minecraft:acacia_boat
+/recipe take @p disease:pinpoint
+/give Dev disease:syringe
+/time set day
+/effect give Dev disease:rabies 120
+/weather rain
+/effect give Dev disease:rabies 120
+/weather clear
+/time set day
+/effect give Dev disease:rabies 120
+/effect give Dev disease:rabies 150
+/time set night
+/effect clear Dev minecraft:weakness
+/effect give Dev disease:rabies
+/effect give Dev disease:rabies 150
+/effect clear Dev disease:rabies
+/effect give Dev disease:rabies
+/effect clear Dev disease:rabies
+/effect give Dev disease:rabies 150
+/effect give Dev minecraft:night_vision
+/give Dev disease:lily_fruit
+/effect give Dev disease:rabies infinite
+/effect clear Dev disease:rabies
+/effect give Dev disease:rabies infinite
+/effect clear Dev disease:rabies
+/effect give Dev disease:rabies infinite
+/time set day
+/weather clear
+/time set day
+/effect give Dev minecraft:hunger infinite 3
+/gamerule keepInventory true
+/kill
+/effect give Dev minecraft:hunger infinite
+/effect give Dev minecraft:hunger infinite 5
+/kill
+/effect clear Dev minecraft:poison
+/time set day
+/effect give Dev minecraft:hunger infinite 5
+/give Dev disease:arsenic_trioxide

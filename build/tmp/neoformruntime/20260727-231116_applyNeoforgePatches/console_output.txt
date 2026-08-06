@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+
+Command-Line:
+ - /usr/lib/jvm/java-21-openjdk/bin/java
+ - -jar
+ - /home/uranium/.gradle/caches/modules-2/files-2.1/io.codechicken/DiffPatch/2.0.0.36/5b32f9baa0c0371c0dc80a3b88794960af0c6b44/DiffPatch-2.0.0.36-all.jar
+ - /home/uranium/.gradle/caches/neoformruntime/intermediate_results/patch_0a03d41bf86288ddd90603b0d6dbf0a073867c81_output.zip
+ - /home/uranium/.gradle/caches/modules-2/files-2.1/net.neoforged/neoforge/21.1.244/d39af05e5ce805d24073f98ae9f86a57f40212b6/neoforge-21.1.244-userdev.jar
+ - --prefix
+ - patches/
+ - --patch
+ - --archive
+ - ZIP
+ - --output
+ - ./output.zip
+ - --log-level
+ - WARN
+ - --mode
+ - OFFSET
+ - --archive-rejects
+ - ZIP
+ - --reject
+ - ./outputRejects.zip
+ - --base-path-prefix
+ - a/
+ - --modified-path-prefix
+ - b/
+--------------------------------------------------------------------------------
+
