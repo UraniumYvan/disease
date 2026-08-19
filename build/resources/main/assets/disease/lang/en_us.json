@@ -6,5 +6,8 @@
 
   "effect.disease.rabies": "rabies",
 
-  "itemGroup.disease": "disease:item"
+  "itemGroup.disease": "disease:item",
+
+  "death.attack.disease": "%1$s is die for disease",
+  "death.attack.disease.player": "%1$s is die for disease"
 }

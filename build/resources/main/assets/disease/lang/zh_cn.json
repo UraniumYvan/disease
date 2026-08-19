@@ -6,5 +6,8 @@
 
   "effect.disease.rabies": "狂犬病",
 
-  "itemGroup.disease": "disease:物品"
+  "itemGroup.disease": "disease:物品",
+
+  "death.attack.disease": "%1$s 病死了",
+  "death.attack.disease.player": "%1$s 病死了"
 }

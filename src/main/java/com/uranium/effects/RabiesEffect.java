@@ -1,5 +1,6 @@
 package com.uranium.effects;
 
+import com.uranium.DamageType.ModDamageType;
 import com.uranium.tools.MinecraftTools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -20,7 +21,16 @@ public class RabiesEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         // 检测是否在服务端
-        if (!entity.level().isClientSide()) {
+        if (!entity.level().isClientSide() &&
+                !(entity instanceof net.minecraft.world.entity.monster.Skeleton) &&
+                !(entity instanceof net.minecraft.world.entity.monster.Zombie) &&
+                !(entity instanceof net.minecraft.world.entity.monster.WitherSkeleton) &&
+                !(entity instanceof net.minecraft.world.entity.monster.Husk) &&
+                !(entity instanceof net.minecraft.world.entity.monster.Drowned) &&
+                !(entity instanceof net.minecraft.world.entity.monster.ZombieVillager) &&
+                !(entity instanceof net.minecraft.world.entity.monster.ZombifiedPiglin) &&
+                !(entity instanceof net.minecraft.world.entity.monster.Zoglin) &&
+                !(entity instanceof net.minecraft.world.entity.monster.Stray)) {
             ////////////////////////////////////////////////////////////////
             // 症状：恐惧水
             // 检测是否在水、装水炼药锅或雨中
@@ -49,7 +59,7 @@ public class RabiesEffect extends MobEffect {
                 timer -= 20;
 
                 if (timer <= 0) {
-                    entity.kill();
+                    entity.hurt(ModDamageType.of(entity.level(), ModDamageType.DISEASE_DAMAGE_TYPE), Float.MAX_VALUE);
                     data.remove(TAG_RABIES_DEATH_TIMER);
                 } else {
                     data.putInt(TAG_RABIES_DEATH_TIMER, timer);

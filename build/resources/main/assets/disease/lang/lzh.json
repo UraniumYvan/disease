@@ -6,5 +6,8 @@
 
   "effect.disease.rabies": "恐水症",
 
-  "itemGroup.disease": "瘟疫：物类"
+  "itemGroup.disease": "瘟疫：物类",
+
+  "death.attack.disease": "%1$s 病亡矣",
+  "death.attack.disease.player": "%1$s 病亡矣"
 }

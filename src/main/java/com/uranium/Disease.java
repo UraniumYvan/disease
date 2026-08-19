@@ -1,15 +1,19 @@
 package com.uranium;
 
 import com.mojang.logging.LogUtils;
+import com.uranium.effects.ArsenicPoisoningEffect;
 import com.uranium.effects.RabiesEffect;
+import com.uranium.effects.SteroidEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,11 +29,13 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
+
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Disease.MODID)
@@ -47,6 +53,8 @@ public class Disease {
     // 注册效果用
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MODID);
     public static final DeferredHolder<MobEffect, RabiesEffect> RABIES_EFFECT = EFFECTS.register("rabies", () -> new RabiesEffect(MobEffectCategory.HARMFUL, 0xFF4500));
+    public static final DeferredHolder<MobEffect, ArsenicPoisoningEffect> ARSENIC_POISONING = EFFECTS.register("arsenic_poisoning", () -> new ArsenicPoisoningEffect(MobEffectCategory.HARMFUL, 0xB7099E));
+    public static final DeferredHolder<MobEffect, SteroidEffect> STEROID_EFFECT = EFFECTS.register("steroid", () -> new SteroidEffect(MobEffectCategory.HARMFUL, 0xFF94DB));;
 
     public static final FoodProperties LILY_FRUIT_FOOD = new FoodProperties.Builder()
             .effect(() -> new MobEffectInstance(MobEffects.WEAKNESS, 120*20, 5), 1.0f)
@@ -63,6 +71,7 @@ public class Disease {
     public static final DeferredHolder<Item, Item> LILY_FRUIT = ITEMS.register("lily_fruit",
             () -> new Item(new Item.Properties().food(LILY_FRUIT_FOOD)));
     public static final DeferredItem<Item> ARSENIC_TRIOXIDE = ITEMS.registerSimpleItem("arsenic_trioxide");
+    public static final DeferredItem<Item> STEROID_SYRINGE = ITEMS.registerSimpleItem("steroid_syringe");
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> DISEASE_TAB = DISEASE_ITEM_TAB.register("disease_item_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.disease"))
@@ -70,6 +79,7 @@ public class Disease {
             .displayItems((parameters, output) -> {
                 output.accept(PINPOINT.get());
                 output.accept(SYRINGE.get());
+                output.accept(STEROID_SYRINGE.get());
             })
             .build());
 
@@ -110,6 +120,17 @@ public class Disease {
     public void onServerStarting(ServerStartingEvent event) {
         // 服务器启动时所做之事
         LOGGER.info("HELLO from server starting");
+    }
+
+    @SubscribeEvent
+    public void infect(LivingDamageEvent.Post event) {
+        DamageSource source = event.getSource();
+
+        if (source.getEntity() instanceof Wolf wolf) {
+            if (wolf.hasEffect(RABIES_EFFECT)) {
+                event.getEntity().addEffect(new MobEffectInstance(RABIES_EFFECT, Integer.MAX_VALUE, 5));
+            }
+        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

@@ -2,15 +2,20 @@ package com.uranium.events;
 
 import com.uranium.Disease;
 import com.uranium.effects.RabiesEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
 import static com.uranium.Disease.MODID;
+import static com.uranium.Disease.RABIES_EFFECT;
 
 // 确保这个类被模组加载，通常使用 @EventBusSubscriber 自动注册
 @EventBusSubscriber(modid = MODID)
@@ -40,6 +45,18 @@ public class ModEvents {
             // 核心逻辑：清除死亡倒计时
             // 这样如果玩家喝牛奶，倒计时会被清空，不会死
             entity.getPersistentData().remove("RabiesDeathTimer");
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntitySpawn(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide()) {
+            Entity entity = event.getEntity();
+            if (entity instanceof Wolf) {
+                if (event.getLevel().getRandom().nextFloat()  < 0.01f) {
+                    ((Wolf) entity).addEffect(new MobEffectInstance(RABIES_EFFECT, Integer.MAX_VALUE, 5));
+                }
+            }
         }
     }
 }

@@ -1,15 +1,3 @@
-/gamerule keepInventory true
-/give Dev disease:pinpoint
-/seed
-/give Dev minecraft:iron_nugget 64
-/recipe take @p examplemod:pinpoint
-/recipe take @p disease:pinpoint
-/time set day
-/recipe take @p disease:pinpoint
-/recipe take @p minecraft:acacia_boat
-/recipe take @p disease:pinpoint
-/give Dev disease:syringe
-/time set day
 /effect give Dev disease:rabies 120
 /weather rain
 /effect give Dev disease:rabies 120
@@ -45,3 +33,18 @@
 /time set day
 /effect give Dev minecraft:hunger infinite 5
 /give Dev disease:arsenic_trioxide
+/effect give Dev disease:arsenic_poisoning infinite 5
+/effect clear Dev disease:arsenic_poisoning
+/effect give Dev disease:arsenic_poisoning infinite 3
+/time set day
+/kill @e[type=minecraft:creeper]
+/effect give Dev disease:arsenic_poisoning infinite 3
+/summon minecraft:wolf
+/effect give @e[type=minecraft:wolf] disease:rabies infinite
+/give Dev minecraft:netherite_sword
+/summon minecraft:wolf
+/effect give @e[type=minecraft:wolf] disease:rabies infinite
+/summon minecraft:wolf
+/effect give @e[type=minecraft:wolf] disease:rabies infinite
+/time set day
+/summon minecraft:iron_golem
