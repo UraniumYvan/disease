@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.uranium.effects.ArsenicPoisoningEffect;
 import com.uranium.effects.RabiesEffect;
 import com.uranium.effects.SteroidEffect;
+import com.uranium.items.SteroidSyringeItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -71,7 +72,7 @@ public class Disease {
     public static final DeferredHolder<Item, Item> LILY_FRUIT = ITEMS.register("lily_fruit",
             () -> new Item(new Item.Properties().food(LILY_FRUIT_FOOD)));
     public static final DeferredItem<Item> ARSENIC_TRIOXIDE = ITEMS.registerSimpleItem("arsenic_trioxide");
-    public static final DeferredItem<Item> STEROID_SYRINGE = ITEMS.registerSimpleItem("steroid_syringe");
+    public static final DeferredItem<Item> STEROID_SYRINGE = ITEMS.register("steroid_syringe", () -> new SteroidSyringeItem(new Item.Properties()));
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> DISEASE_TAB = DISEASE_ITEM_TAB.register("disease_item_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.disease"))
